@@ -110,18 +110,9 @@
 
 .sceneActive { z-index: 2; opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) scale(1); pointer-events: auto; }
 
-.stickyStageNearEnd .sceneActive[data-scene="3"] .thesis {
-  transform: translate3d(0, -7vh, 0) scale(.88);
-  transform-origin: 50% 100%;
-}
-
-.stickyStageNearEnd .sceneActive[data-scene="3"] .judgmentNav {
-  transform: translate3d(0, -15vh, 0) scale(.9);
-  transform-origin: 100% 100%;
-}
-
-.stickyStageNearEnd .sceneActive[data-scene="3"] .giantNumber {
-  transform: translate3d(calc(var(--pointer-x) * -8px), calc(-50% + var(--pointer-y) * -5px), 0) scale(.82);
+.stickyStageNearEnd .sceneActive[data-scene="3"] {
+  transform: translate3d(0, -16vh, 0) scale(.88);
+  transform-origin: 50% 0;
 }
 
 .judgmentNav {
