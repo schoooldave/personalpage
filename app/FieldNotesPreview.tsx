@@ -7,7 +7,7 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-import { fieldNoteJudgments, fieldNotes, workCases } from "@/lib/portfolio";
+import { fieldNoteJudgments } from "@/lib/portfolio";
 import { clampProgress, sceneFromProgress } from "./field-notes/scene-progress";
 import styles from "./fieldnotes.module.css";
 
@@ -245,35 +245,35 @@ export default function FieldNotesPreview() {
       <div className={styles.featuredNotes} onPointerLeave={() => setActiveFeatured(null)}>
         <a
           className={`${styles.featuredNote} ${activeFeatured === 0 ? styles.featuredNoteActive : ""}`}
-          href="/cases/dms"
+          href="/notes"
           onFocus={() => setActiveFeatured(0)}
           onPointerEnter={() => setActiveFeatured(0)}
           onBlur={() => setActiveFeatured(null)}
         >
-          <small>代表项目 / PROJECT 01</small>
-          <strong>{workCases[0].title}</strong>
-          <span>打开项目档案 ↗</span>
+          <small>行业思考 / FIELD NOTE 01</small>
+          <strong>{fieldNoteJudgments[0].title}</strong>
+          <span>打开行业笔记 ↗</span>
         </a>
         <a
           className={`${styles.featuredNote} ${activeFeatured === 1 ? styles.featuredNoteActive : ""}`}
-          href="/cases/sfa"
+          href="/notes/system-process"
           onFocus={() => setActiveFeatured(1)}
           onPointerEnter={() => setActiveFeatured(1)}
           onBlur={() => setActiveFeatured(null)}
         >
-          <small>代表项目 / PROJECT 02</small>
-          <strong>{workCases[1].title}</strong>
-          <span>打开项目档案 ↗</span>
+          <small>行业思考 / FIELD NOTE 02</small>
+          <strong>{fieldNoteJudgments[1].title}</strong>
+          <span>打开行业笔记 ↗</span>
         </a>
         <a
           className={`${styles.featuredNote} ${activeFeatured === 2 ? styles.featuredNoteActive : ""}`}
-          href="/notes"
+          href="/#cases"
           onFocus={() => setActiveFeatured(2)}
           onPointerEnter={() => setActiveFeatured(2)}
           onBlur={() => setActiveFeatured(null)}
         >
-          <small>第一篇 Field Note</small>
-          <strong>{fieldNotes[0].title}</strong>
+          <small>行业思考 / FIELD NOTE 03</small>
+          <strong>{fieldNoteJudgments[2].title}</strong>
           <span>打开行业笔记 ↗</span>
         </a>
       </div>
