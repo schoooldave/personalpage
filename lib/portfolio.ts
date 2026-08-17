@@ -37,6 +37,7 @@ export const fieldNoteJudgments = [
   {
     number: "01",
     navTitle: "数据不等于价值",
+    navLabel: "数据价值",
     title: "数据不等于价值",
     body: "数据采集不是终点。只有当数据能够帮助业务理解问题、支持判断并产生行动时，数据才真正进入业务价值链。",
     track: [
@@ -48,6 +49,7 @@ export const fieldNoteJudgments = [
   {
     number: "02",
     navTitle: "系统不等于流程",
+    navLabel: "系统流程",
     title: "系统不等于流程",
     body: "系统可以记录流程和结果，但问题的解决仍然需要组织协同、管理反馈和持续调整。",
     track: [
@@ -59,6 +61,7 @@ export const fieldNoteJudgments = [
   {
     number: "03",
     navTitle: "上线不等于改变",
+    navLabel: "组织改变",
     title: "上线不等于改变",
     body: "系统完成上线，只代表功能进入了组织。真正的改变还取决于流程是否顺畅、角色是否接受，以及管理机制是否能够持续推动使用。",
     track: [

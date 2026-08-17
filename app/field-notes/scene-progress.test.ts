@@ -33,5 +33,10 @@ describe("field note judgment navigation", () => {
       "系统不等于流程",
       "上线不等于改变",
     ]);
+    expect(fieldNoteJudgments.map((judgment) => judgment.navLabel)).toEqual([
+      "数据价值",
+      "系统流程",
+      "组织改变",
+    ]);
   });
 });

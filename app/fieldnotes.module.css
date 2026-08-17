@@ -138,6 +138,7 @@
 .judgmentNav button:focus-visible,
 .judgmentNavActive { color: var(--ink) !important; border-color: var(--accent) !important; transform: translateX(-7px); }
 .judgmentNav button span { color: var(--accent); font: 10px/1 Arial, sans-serif; letter-spacing: .08em; }
+.judgmentNav button span { white-space: nowrap; }
 .judgmentNav button strong { font: 16px/1.2 Georgia, "Songti SC", serif; font-weight: 500; }
 .judgmentNav button:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
 
