@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fieldNoteJudgments, fieldNotes, portfolioSummary, workCases } from "./portfolio";
+import { fieldNoteJudgments, fieldNotes, portfolioSummary, systemProcessNote, workCases } from "./portfolio";
 
 describe("portfolio content baseline", () => {
   it("keeps the recruiter-facing summary grounded", () => {
@@ -32,6 +32,17 @@ describe("portfolio content baseline", () => {
       "形成判断",
       "推动行动",
       "结果反馈",
+    ]);
+  });
+
+  it("exposes the system-is-not-process article as three distinct process breaks", () => {
+    expect(systemProcessNote.title).toBe("系统不等于流程");
+    expect(systemProcessNote.comparison.system).toHaveLength(3);
+    expect(systemProcessNote.comparison.real).toHaveLength(3);
+    expect(systemProcessNote.sections.map((section) => section.title)).toEqual([
+      "判断不是点击",
+      "例外不是错误",
+      "责任不是状态",
     ]);
   });
 
