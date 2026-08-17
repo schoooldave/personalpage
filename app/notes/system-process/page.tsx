@@ -7,9 +7,9 @@ export default function SystemProcessPage() {
 
   return (
     <main className={styles.page}>
-      <nav className={styles.nav} aria-label="Field Notes 导航"><Link href="/" className={styles.brand}>现代工作笔记</Link><span>FMCG FIELD NOTES / 03</span></nav>
+      <nav className={styles.nav} aria-label="Field Notes 导航"><Link href="/" className={styles.brand}>现代工作笔记</Link><span>FMCG FIELD NOTES / 02</span></nav>
       <header className={styles.hero}>
-        <div className={styles.number}>03</div>
+        <div className={styles.number}>02</div>
         <div><p className={styles.eyebrow}>{note.eyebrow}</p><h1>{note.title}</h1><h2>{note.judgment}</h2><p>{note.question}</p></div>
         <aside className={styles.aside}><strong>这篇文章讨论什么？</strong><p>系统里的步骤都正确，为什么到了现场仍然需要解释、协调和绕行？</p></aside>
       </header>
