@@ -21,12 +21,11 @@ export default function FieldNotesPreview() {
   const pointerFrameRef = useRef<number | null>(null);
   const pointerPositionRef = useRef({ x: 0, y: 0 });
   const [activeScene, setActiveScene] = useState(0);
-  const [hoveredJudgment, setHoveredJudgment] = useState<number | null>(null);
   const [activeSteps, setActiveSteps] = useState([0, 0, 0]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isNarrow, setIsNarrow] = useState(false);
   const staticLayout = prefersReducedMotion || isNarrow;
-  const visualScene = !isNarrow && hoveredJudgment !== null ? hoveredJudgment : activeScene;
+  const visualScene = activeScene;
 
   useEffect(() => {
     const motionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -188,20 +187,19 @@ export default function FieldNotesPreview() {
                   <div>{judgment.body}</div>
                 </div>
                 <nav className={styles.judgmentNav} aria-label="行业判断">
-                  {fieldNoteJudgments.map((navJudgment, navIndex) => (
+                  {judgment.track.map((step, stepIndex) => (
                     <button
-                      className={navIndex === visualScene ? styles.judgmentNavActive : ""}
-                      key={navJudgment.number}
+                      className={stepIndex === activeSteps[index] ? styles.judgmentNavActive : ""}
+                      key={step.label}
                       type="button"
-                      tabIndex={staticLayout || navIndex === visualScene ? 0 : -1}
-                      onPointerEnter={() => setHoveredJudgment(navIndex)}
-                      onFocus={() => setHoveredJudgment(navIndex)}
-                      onPointerLeave={() => setHoveredJudgment(null)}
-                      onBlur={() => setHoveredJudgment(null)}
+                      tabIndex={staticLayout || index === visualScene ? 0 : -1}
+                      onPointerEnter={() => activateStep(index, stepIndex)}
+                      onFocus={() => activateStep(index, stepIndex)}
                     >
-                      <strong>{navJudgment.navTitle}</strong>
+                      <span>{step.label}</span>
                     </button>
                   ))}
+                  <p className={styles.judgmentNote}>{judgment.track[activeSteps[index]].note}</p>
                 </nav>
                 <ol className={styles.relationshipTrack}>
                   <svg
