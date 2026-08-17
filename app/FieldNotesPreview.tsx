@@ -22,6 +22,7 @@ export default function FieldNotesPreview() {
   const pointerPositionRef = useRef({ x: 0, y: 0 });
   const [activeScene, setActiveScene] = useState(0);
   const [activeSteps, setActiveSteps] = useState([0, 0, 0]);
+  const [isNearEnd, setIsNearEnd] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isNarrow, setIsNarrow] = useState(false);
   const staticLayout = prefersReducedMotion || isNarrow;
@@ -84,6 +85,7 @@ export default function FieldNotesPreview() {
       const nextScene = sceneFromProgress(progress);
 
       section.style.setProperty("--stage-progress", String(progress));
+      setIsNearEnd(progress > 0.82);
 
       if (nextScene !== activeSceneRef.current) {
         const previousScene = sceneRefs.current[activeSceneRef.current];
@@ -154,7 +156,7 @@ export default function FieldNotesPreview() {
     <section ref={sectionRef} className={styles.fieldNotesPreview} aria-label="FMCG Field Notes">
       <div
         ref={stageRef}
-        className={styles.stickyStage}
+        className={`${styles.stickyStage} ${isNearEnd ? styles.stickyStageNearEnd : ""}`}
         onPointerMove={staticLayout ? undefined : handlePointerMove}
         onPointerLeave={staticLayout ? undefined : resetPointer}
       >
