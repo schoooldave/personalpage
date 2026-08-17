@@ -13,11 +13,26 @@ describe("portfolio content baseline", () => {
 
   it("keeps Field Notes judgment, evidence, projection, and boundary separate", () => {
     const note = fieldNotes[0];
-    expect(note.title).toBe("数据不是越多越有价值：经销商为什么愿意分享？");
+    expect(note.title).toBe("数据不等于价值");
+    expect(note.subtitle).toContain("为什么企业获得了更多渠道数据");
     expect(note.judgment).toBeTruthy();
     expect(note.evidence).toBeTruthy();
     expect(note.aiProjection).toBeTruthy();
     expect(note.boundary).toBeTruthy();
+  });
+
+  it("exposes the three essay movements and five data-value chain steps", () => {
+    const note = fieldNotes[0];
+    expect(note.movements).toHaveLength(3);
+    expect(note.movements.every((movement) => movement.paragraphs.length >= 2)).toBe(true);
+    expect(note.roles.map((role) => role.title)).toEqual(["总部", "销售", "经销商"]);
+    expect(note.valueChain.map((step) => step.label)).toEqual([
+      "稳定采集",
+      "数据可靠",
+      "形成判断",
+      "推动行动",
+      "结果反馈",
+    ]);
   });
 
   it("exposes the three ordered FMCG judgments", () => {
