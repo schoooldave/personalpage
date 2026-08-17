@@ -7,7 +7,7 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-import { fieldNoteJudgments, fieldNotes } from "@/lib/portfolio";
+import { fieldNoteJudgments, fieldNotes, workCases } from "@/lib/portfolio";
 import { clampProgress, sceneFromProgress } from "./field-notes/scene-progress";
 import styles from "./fieldnotes.module.css";
 
@@ -237,9 +237,17 @@ export default function FieldNotesPreview() {
           </div>
         </div>
       </div>
-      <div className={styles.featuredNote}>
-        <small>第一篇 Field Note</small>
-        <a href="/notes">{fieldNotes[0].title} <span>↗</span></a>
+      <div className={styles.featuredNotes}>
+        <a className={styles.featuredNote} href="/cases/dms">
+          <small>代表项目 / PROJECT 01</small>
+          <strong>{workCases[0].title}</strong>
+          <span>打开项目档案 ↗</span>
+        </a>
+        <a className={styles.featuredNote} href="/notes">
+          <small>第一篇 Field Note</small>
+          <strong>{fieldNotes[0].title}</strong>
+          <span>打开行业笔记 ↗</span>
+        </a>
       </div>
     </section>
   );
