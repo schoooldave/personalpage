@@ -267,7 +267,7 @@ export default function FieldNotesPreview() {
         </a>
         <a
           className={`${styles.featuredNote} ${activeFeatured === 2 ? styles.featuredNoteActive : ""}`}
-          href="/#cases"
+          href="/notes/continuous-use"
           onFocus={() => setActiveFeatured(2)}
           onPointerEnter={() => setActiveFeatured(2)}
           onBlur={() => setActiveFeatured(null)}
