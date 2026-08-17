@@ -199,7 +199,6 @@ export default function FieldNotesPreview() {
                       onPointerLeave={() => setHoveredJudgment(null)}
                       onBlur={() => setHoveredJudgment(null)}
                     >
-                      <span>{navJudgment.navLabel}</span>
                       <strong>{navJudgment.navTitle}</strong>
                     </button>
                   ))}
