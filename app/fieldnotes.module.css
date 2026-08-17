@@ -1,0 +1,364 @@
+.fieldNotesPreview {
+  --paper: #eae6dd;
+  --ink: #171714;
+  --muted: #6d6860;
+  --rule: #bdb7ac;
+  --accent: #ef4d17;
+  --pointer-x: 0;
+  --pointer-y: 0;
+  position: relative;
+  min-height: 330vh;
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 24% 1fr;
+  height: 100vh;
+  min-height: 650px;
+  overflow: hidden;
+  background: radial-gradient(circle at 76% 40%, rgba(255, 255, 255, .36), transparent 33%), var(--paper);
+  isolation: isolate;
+}
+
+.stickyStage::after {
+  position: absolute;
+  right: 3.6vw;
+  bottom: 3.2vh;
+  color: rgba(23, 23, 20, .32);
+  content: "SCROLL TO READ  ↓";
+  font: 9px/1.2 Arial, sans-serif;
+  letter-spacing: .18em;
+  z-index: 4;
+}
+
+.chapterRail {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(96px, .58fr) 1fr;
+  align-content: start;
+  min-width: 0;
+  padding: clamp(68px, 8vh, 104px) 2.8vw 48px 5vw;
+  border-right: 1px solid var(--rule);
+}
+
+.chapterRail > span {
+  color: var(--accent);
+  font: 300 clamp(62px, 7vw, 108px)/.8 Georgia, serif;
+  letter-spacing: -.07em;
+}
+
+.chapterRail p { margin: 3px 0 0; font: 500 17px/1.45 Georgia, "Songti SC", serif; }
+.chapterRail small { color: var(--muted); font: 8px/2 Arial, sans-serif; letter-spacing: .18em; }
+
+.chapterRail i {
+  position: absolute;
+  top: clamp(210px, 27vh, 300px);
+  bottom: 9vh;
+  left: 5.2vw;
+  width: 1px;
+  overflow: hidden;
+  background: rgba(23, 23, 20, .18);
+}
+
+.chapterRail i::after {
+  display: block;
+  width: 2px;
+  height: calc((var(--scene-index) + 1) * 33.333%);
+  background: var(--accent);
+  content: "";
+  transition: height 680ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.stageContent { position: relative; min-width: 0; height: 100%; padding: clamp(54px, 7vh, 88px) 5vw 5vh; }
+
+.stageHeader {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 17px;
+  border-bottom: 1px solid rgba(23, 23, 20, .18);
+}
+
+.stageHeader p, .stageHeader span { margin: 0; font: 10px/1.2 Arial, sans-serif; letter-spacing: .16em; }
+.stageHeader p { color: var(--accent); }
+.stageHeader span { color: var(--muted); }
+.scenes { position: absolute; inset: clamp(100px, 14vh, 150px) 4.6vw 6vh; min-width: 0; }
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, .82fr);
+  gap: clamp(28px, 4vw, 68px);
+  align-items: center;
+  min-width: 0;
+  opacity: .035;
+  filter: blur(13px);
+  transform: translate3d(0, 8%, 0) scale(.985);
+  transform-origin: 50% 55%;
+  pointer-events: none;
+  transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), filter 720ms cubic-bezier(.22, 1, .36, 1), transform 760ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.sceneActive { z-index: 2; opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) scale(1); pointer-events: auto; }
+
+.judgmentNav {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  z-index: 4;
+  display: grid;
+  gap: 14px;
+  width: min(280px, 30%);
+}
+
+.judgmentNav button {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 0 0 9px;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 23, 20, .16);
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+  transition: color 280ms ease, border-color 280ms ease, transform 360ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.judgmentNav button:hover,
+.judgmentNav button:focus-visible,
+.judgmentNavActive { color: var(--ink) !important; border-color: var(--accent) !important; transform: translateX(-7px); }
+.judgmentNav button span { color: var(--accent); font: 10px/1 Arial, sans-serif; letter-spacing: .08em; }
+.judgmentNav button strong { font: 16px/1.2 Georgia, "Songti SC", serif; font-weight: 500; }
+.judgmentNav button:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+
+.giantNumber {
+  position: absolute;
+  top: 50%;
+  left: -2.3vw;
+  color: rgba(23, 23, 20, .055);
+  font: 300 clamp(210px, 29vw, 460px)/.72 Georgia, serif;
+  letter-spacing: -.1em;
+  transform: translate3d(calc(var(--pointer-x) * -12px), calc(-50% + var(--pointer-y) * -8px), 0);
+  transition: transform 260ms ease-out;
+  user-select: none;
+  white-space: nowrap;
+  z-index: -1;
+}
+
+.giantNumber::after {
+  position: absolute;
+  inset: 26% -12% auto auto;
+  width: 82px;
+  height: 82px;
+  border: 1px solid rgba(23, 23, 20, .14);
+  border-radius: 50%;
+  content: "";
+  opacity: 0;
+  transform: scale(.65);
+  transition: opacity 700ms ease, transform 900ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.sceneActive .giantNumber::after { opacity: 1; transform: scale(1); }
+
+.thesis {
+  position: relative;
+  align-self: center;
+  max-width: 700px;
+  padding-left: 1.2vw;
+  transform: translate3d(calc(var(--pointer-x) * 5px), calc(var(--pointer-y) * 3px), 0);
+  transition: transform 320ms ease-out;
+  z-index: 2;
+}
+
+.thesis > p { margin: 0 0 22px; color: var(--accent); font: 10px/1.2 Arial, sans-serif; letter-spacing: .17em; }
+.thesis h2 { max-width: 680px; margin: 0; font: 500 clamp(48px, 5.2vw, 82px)/1.06 Georgia, "Songti SC", serif; letter-spacing: -.055em; text-wrap: balance; }
+.thesis > div { max-width: 520px; margin-top: clamp(30px, 4.2vh, 48px); padding-top: 20px; border-top: 1px solid rgba(23, 23, 20, .24); color: #4f4b44; font: 15px/1.78 Georgia, "Songti SC", serif; }
+
+.relationshipTrack {
+  position: relative;
+  display: grid;
+  align-self: center;
+  gap: clamp(26px, 4vh, 46px);
+  min-width: 0;
+  margin: 0;
+  padding: 16px 0 16px 43px;
+  list-style: none;
+  transform: translate3d(calc(var(--pointer-x) * 9px), calc(var(--pointer-y) * 6px), 0);
+  transition: transform 290ms ease-out;
+}
+
+.scene > .relationshipTrack { display: none; }
+
+.trackPath { position: absolute; top: 8px; bottom: 8px; left: 0; width: 32px; height: calc(100% - 16px); overflow: visible; }
+.trackPath path { fill: none; stroke: rgba(23, 23, 20, .2); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.trackPath path::after { content: none; }
+.trackPath path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1100ms cubic-bezier(.22, 1, .36, 1), stroke 420ms ease; }
+.sceneActive .trackPath path { stroke: var(--accent); stroke-dashoffset: 0; }
+
+.relationshipTrack li { position: relative; min-width: 0; opacity: .45; transition: opacity 280ms ease, transform 350ms cubic-bezier(.22, 1, .36, 1); }
+.relationshipTrack li::before { position: absolute; top: 8px; left: -38px; width: 11px; height: 11px; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); content: ""; transition: background 280ms ease, border-color 280ms ease, transform 280ms ease; z-index: 2; }
+.sceneActive .relationshipTrack li { animation: trackStepIn 520ms both cubic-bezier(.22, 1, .36, 1); }
+.sceneActive .relationshipTrack li:nth-of-type(2) { animation-delay: 120ms; }
+.sceneActive .relationshipTrack li:nth-of-type(3) { animation-delay: 240ms; }
+.relationshipTrack li:hover, .relationshipTrack li:focus-within, .stepActive { opacity: 1; transform: translateX(5px); }
+.relationshipTrack li:hover::before, .relationshipTrack li:focus-within::before, .stepActive::before { border-color: var(--accent); background: var(--accent); transform: scale(1.25); }
+
+.relationshipTrack button { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: default; }
+.relationshipTrack button > span { display: block; font: 500 clamp(20px, 2.1vw, 30px)/1.25 Georgia, "Songti SC", serif; }
+.relationshipTrack button small { display: block; max-width: 280px; max-height: 0; margin-top: 0; overflow: hidden; color: var(--muted); font: 12px/1.65 Arial, "PingFang SC", sans-serif; opacity: 0; transform: translateY(7px); transition: max-height 360ms ease, margin 360ms ease, opacity 300ms ease, transform 360ms ease; }
+.relationshipTrack li:hover small, .relationshipTrack li:focus-within small, .stepActive small { max-height: 54px; margin-top: 8px; opacity: 1; transform: translateY(0); }
+.relationshipTrack button:focus-visible { outline: 1px solid var(--accent); outline-offset: 8px; }
+
+@keyframes trackStepIn {
+  from { opacity: .12; transform: translate3d(-10px, 0, 0); }
+  to { opacity: .45; transform: translate3d(0, 0, 0); }
+}
+
+.scene[data-scene="2"] .giantNumber::after {
+  width: 112px;
+  height: 112px;
+  border: 0;
+  border-radius: 0;
+  background: radial-gradient(circle at 18% 22%, var(--accent) 0 2px, transparent 3px), radial-gradient(circle at 69% 17%, rgba(23, 23, 20, .45) 0 2px, transparent 3px), radial-gradient(circle at 31% 66%, rgba(23, 23, 20, .3) 0 3px, transparent 4px), radial-gradient(circle at 84% 74%, var(--accent) 0 2px, transparent 3px), radial-gradient(circle at 54% 47%, rgba(23, 23, 20, .35) 0 2px, transparent 3px);
+  filter: blur(3px);
+  transform: translate(-42px, 24px) scale(1.35);
+}
+.sceneActive[data-scene="2"] .giantNumber::after { filter: blur(0); transform: translate(0, 0) scale(.7); }
+
+.scene[data-scene="2"] .relationshipTrack li::after {
+  position: absolute;
+  top: 13px;
+  left: -105px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 19px -15px 0 rgba(23, 23, 20, .34), 35px 10px 0 rgba(239, 77, 23, .58), 7px 23px 0 rgba(23, 23, 20, .24), 52px -8px 0 rgba(23, 23, 20, .28);
+  content: "";
+  opacity: .18;
+  filter: blur(2px);
+  transform: translateX(-18px) scale(1.35);
+  transition: opacity 520ms ease, filter 700ms ease, transform 900ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.sceneActive[data-scene="2"] .relationshipTrack li::after {
+  opacity: .62;
+  filter: blur(0);
+  transform: translateX(54px) scale(.72);
+}
+
+.sceneActive[data-scene="2"] .relationshipTrack li:nth-child(2)::after {
+  opacity: .42;
+  transform: translateX(70px) scale(.48);
+}
+
+.sceneActive[data-scene="2"] .relationshipTrack li:nth-child(3)::after {
+  box-shadow: 14px 0 0 rgba(239, 77, 23, .28);
+  opacity: 1;
+  transform: translateX(84px) scale(.82);
+}
+
+.scene[data-scene="3"] .relationshipTrack li:nth-child(2)::after { position: absolute; top: 1px; left: -45px; width: 25px; height: 25px; border: 1px solid rgba(239, 77, 23, .5); border-radius: 50%; content: ""; opacity: 0; transform: scale(.4); transition: opacity 500ms 600ms ease, transform 700ms 600ms cubic-bezier(.22, 1, .36, 1); }
+.sceneActive[data-scene="3"] .relationshipTrack li:nth-child(2)::after { opacity: 1; transform: scale(1); }
+
+.featuredNote { position: absolute; right: 0; bottom: 0; left: 24%; display: grid; grid-template-columns: minmax(130px, .3fr) 1fr; gap: 32px; align-items: center; min-height: 30vh; padding: 5vh 5vw; border-top: 1px solid var(--rule); background: var(--paper); z-index: 6; }
+.featuredNote small { color: var(--accent); font: 9px/1.5 Arial, sans-serif; letter-spacing: .15em; }
+.featuredNote a { display: flex; justify-content: space-between; align-items: center; color: inherit; font: 500 clamp(22px, 2.6vw, 38px)/1.35 Georgia, "Songti SC", serif; text-decoration: none; }
+.featuredNote a span { display: inline-block; margin-left: 18px; color: var(--accent); transition: transform 300ms cubic-bezier(.22, 1, .36, 1); }
+.featuredNote a:hover span, .featuredNote a:focus-visible span { transform: translate(5px, -5px); }
+.featuredNote a:focus-visible { outline: 1px solid var(--accent); outline-offset: 9px; }
+
+@media (max-width: 1020px) and (min-width: 761px) {
+  .chapterRail { grid-template-columns: 1fr; gap: 22px; }
+  .chapterRail > span { font-size: 76px; }
+  .scene { grid-template-columns: minmax(0, 1.15fr) minmax(240px, .85fr); gap: 28px; }
+  .thesis h2 { font-size: clamp(46px, 6vw, 68px); }
+  .relationshipTrack { padding-left: 34px; }
+  .relationshipTrack li::before { left: -29px; }
+}
+
+@media (max-width: 760px) {
+  .fieldNotesPreview { min-height: auto; }
+  .stickyStage { position: relative; display: block; height: auto; min-height: 0; overflow: visible; }
+  .stickyStage::after { display: none; }
+  .chapterRail { display: grid; grid-template-columns: 86px 1fr; gap: 18px; padding: 54px 6vw 36px; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .chapterRail > span { font-size: 66px; }
+  .chapterRail i { display: none; }
+  .stageContent { height: auto; padding: 0; }
+  .stageHeader { padding: 24px 6vw; border-bottom: 1px solid var(--rule); }
+  .stageHeader span { display: none; }
+  .scenes { position: relative; inset: auto; }
+  .scene, .sceneActive { position: relative; inset: auto; display: block; min-height: 0; padding: 64px 6vw 68px; border-bottom: 1px solid var(--rule); opacity: 1; filter: none; transform: none; pointer-events: auto; }
+  .giantNumber { top: 44px; right: 5vw; left: auto; font-size: 146px; transform: none; }
+  .thesis { max-width: none; padding: 0; transform: none; }
+  .thesis h2 { max-width: 82%; font-size: clamp(45px, 14vw, 66px); }
+  .thesis > div { font-size: 15px; }
+  .judgmentNav { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 46px; }
+  .judgmentNav button { transform: none; }
+  .judgmentNav button:hover, .judgmentNav button:focus-visible, .judgmentNavActive { transform: none; }
+  .relationshipTrack { gap: 28px; margin-top: 44px; padding: 8px 0 8px 38px; transform: none; }
+  .trackPath path { stroke-dashoffset: 0; transition: none; }
+  .relationshipTrack li { opacity: 1; transform: none; }
+  .relationshipTrack button small { max-width: none; max-height: none; margin-top: 7px; opacity: 1; transform: none; }
+  .scene[data-scene="2"] .relationshipTrack li::after,
+  .sceneActive[data-scene="2"] .relationshipTrack li::after {
+    right: 64px;
+    left: auto;
+    opacity: .42;
+    filter: none;
+    transform: none;
+  }
+  .scene[data-scene="2"] .relationshipTrack li:nth-child(2)::after {
+    box-shadow: 14px 0 0 rgba(23, 23, 20, .28), 28px 0 0 rgba(239, 77, 23, .42);
+  }
+  .scene[data-scene="2"] .relationshipTrack li:nth-child(3)::after {
+    box-shadow: 12px 0 0 rgba(239, 77, 23, .3);
+    opacity: 1;
+  }
+  .featuredNote { position: relative; right: auto; bottom: auto; left: auto; grid-template-columns: 1fr; gap: 18px; min-height: 0; padding: 52px 6vw 60px; }
+  .featuredNote a { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fieldNotesPreview { min-height: auto; }
+  .stickyStage { position: relative; display: block; height: auto; min-height: 0; overflow: visible; }
+  .stickyStage::after, .chapterRail i { display: none; }
+  .chapterRail { min-height: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .stageContent { height: auto; padding: 0; }
+  .stageHeader { padding: 24px 5vw; }
+  .scenes { position: relative; inset: auto; }
+  .scene, .sceneActive { position: relative; inset: auto; min-height: 560px; padding: 70px 5vw; border-bottom: 1px solid var(--rule); opacity: 1; filter: none; transform: none; pointer-events: auto; transition: none; }
+  .giantNumber, .thesis, .relationshipTrack { transform: none; transition: none; }
+  .trackPath path { stroke-dashoffset: 0; transition: none; }
+  .stickyStage *, .stickyStage *::before, .stickyStage *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .relationshipTrack li,
+  .relationshipTrack li:hover,
+  .relationshipTrack li:focus-within,
+  .stepActive {
+    filter: none;
+    transform: none;
+  }
+  .scene[data-scene="2"] .giantNumber::after,
+  .scene[data-scene="2"] .relationshipTrack li::after,
+  .sceneActive[data-scene="2"] .giantNumber::after,
+  .sceneActive[data-scene="2"] .relationshipTrack li::after {
+    filter: none;
+    transform: none;
+  }
+  .relationshipTrack button small { max-height: none; margin-top: 8px; opacity: 1; transform: none; transition: none; }
+  .featuredNote { position: relative; right: auto; bottom: auto; left: auto; }
+  .featuredNote a span { transition: none; }
+}
