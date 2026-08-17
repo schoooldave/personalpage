@@ -23,6 +23,7 @@ export default function FieldNotesPreview() {
   const [activeScene, setActiveScene] = useState(0);
   const [activeSteps, setActiveSteps] = useState([0, 0, 0]);
   const [isNearEnd, setIsNearEnd] = useState(false);
+  const [activeFeatured, setActiveFeatured] = useState<number | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isNarrow, setIsNarrow] = useState(false);
   const staticLayout = prefersReducedMotion || isNarrow;
@@ -153,7 +154,11 @@ export default function FieldNotesPreview() {
   };
 
   return (
-    <section ref={sectionRef} className={styles.fieldNotesPreview} aria-label="FMCG Field Notes">
+    <section
+      ref={sectionRef}
+      className={`${styles.fieldNotesPreview} ${isNearEnd ? styles.fieldNotesPreviewNearEnd : ""}`}
+      aria-label="FMCG Field Notes"
+    >
       <div
         ref={stageRef}
         className={`${styles.stickyStage} ${isNearEnd ? styles.stickyStageNearEnd : ""}`}
@@ -237,13 +242,36 @@ export default function FieldNotesPreview() {
           </div>
         </div>
       </div>
-      <div className={styles.featuredNotes}>
-        <a className={styles.featuredNote} href="/cases/dms">
+      <div className={styles.featuredNotes} onPointerLeave={() => setActiveFeatured(null)}>
+        <a
+          className={`${styles.featuredNote} ${activeFeatured === 0 ? styles.featuredNoteActive : ""}`}
+          href="/cases/dms"
+          onFocus={() => setActiveFeatured(0)}
+          onPointerEnter={() => setActiveFeatured(0)}
+          onBlur={() => setActiveFeatured(null)}
+        >
           <small>代表项目 / PROJECT 01</small>
           <strong>{workCases[0].title}</strong>
           <span>打开项目档案 ↗</span>
         </a>
-        <a className={styles.featuredNote} href="/notes">
+        <a
+          className={`${styles.featuredNote} ${activeFeatured === 1 ? styles.featuredNoteActive : ""}`}
+          href="/cases/sfa"
+          onFocus={() => setActiveFeatured(1)}
+          onPointerEnter={() => setActiveFeatured(1)}
+          onBlur={() => setActiveFeatured(null)}
+        >
+          <small>代表项目 / PROJECT 02</small>
+          <strong>{workCases[1].title}</strong>
+          <span>打开项目档案 ↗</span>
+        </a>
+        <a
+          className={`${styles.featuredNote} ${activeFeatured === 2 ? styles.featuredNoteActive : ""}`}
+          href="/notes"
+          onFocus={() => setActiveFeatured(2)}
+          onPointerEnter={() => setActiveFeatured(2)}
+          onBlur={() => setActiveFeatured(null)}
+        >
           <small>第一篇 Field Note</small>
           <strong>{fieldNotes[0].title}</strong>
           <span>打开行业笔记 ↗</span>
