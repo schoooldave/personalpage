@@ -1,0 +1,37 @@
+.thoughtSection {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 780px);
+  gap: 7vw;
+  padding: 80px 0 96px;
+  border-top: 1px solid #c8c4ba;
+}
+
+.essay {
+  max-width: 760px;
+  margin: 0 0 28px;
+  color: #4f4b44;
+  font: 18px/2 Georgia, "Songti SC", serif;
+}
+
+.essay:last-child {
+  margin-bottom: 0;
+  color: #151515;
+  font-size: 21px;
+}
+
+@media (max-width: 700px) {
+  .thoughtSection {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 18px;
+    padding: 36px 0;
+  }
+
+  .essay {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .essay:last-child {
+    font-size: 18px;
+  }
+}
