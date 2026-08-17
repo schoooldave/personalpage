@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fieldNotes } from "@/lib/portfolio";
+import EvidencePortal from "./EvidencePortal";
 import styles from "./notes.module.css";
 import essayStyles from "./essay.module.css";
 
@@ -29,6 +30,7 @@ export default function FieldNotesPage() {
         <div>
           <p className={styles.label}>行业思考 / FIELD ESSAY</p>
           {note.thought.map((paragraph) => <p className={essayStyles.essay} key={paragraph}>{paragraph}</p>)}
+          <EvidencePortal />
         </div>
       </article>
 
@@ -43,7 +45,7 @@ export default function FieldNotesPage() {
       </section>
 
       <section className={styles.aiSection}>
-        <div className={styles.sectionMark}>04</div>
+        <div className={styles.sectionMark}>05</div>
         <div><p className={styles.label}>AI / 未来推演</p><h2>{note.aiProjection}</h2><p className={styles.aiNote}>不是把 AI 叠加在报表上，而是让系统从“记录发生了什么”继续走向“解释为什么发生、下一步做什么”。</p></div>
       </section>
 

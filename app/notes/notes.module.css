@@ -1,0 +1,533 @@
+.page {
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #f3f0e9;
+  color: #151515;
+  padding: 28px 5vw 72px;
+  font-family: Arial, "Noto Sans SC", sans-serif;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #cbc7bd;
+  padding-bottom: 20px;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand strong {
+  font: 500 18px/1.1 Georgia, "Songti SC", serif;
+}
+
+.brand span {
+  font: 11px/1.2 Arial;
+  letter-spacing: .08em;
+  color: #67645e;
+}
+
+.nav div {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+}
+
+.header {
+  max-width: 920px;
+  padding: 11vw 0 9vw;
+}
+
+.eyebrow,
+.label {
+  color: #f04b13;
+  font-size: 11px;
+  letter-spacing: .12em;
+}
+
+.header h1 {
+  max-width: 900px;
+  font: 500 clamp(42px, 7vw, 96px)/1.05 Georgia, "Songti SC", serif;
+  letter-spacing: -.045em;
+  margin: 26px 0;
+}
+
+.subtitle {
+  max-width: 580px;
+  font: 18px/1.7 Georgia, "Songti SC", serif;
+  color: #514e48;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  margin-top: 42px;
+}
+
+.meta span {
+  border: 1px solid #aaa59b;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+.section {
+  border-top: 1px solid #c8c4ba;
+  padding: 52px 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 760px);
+  gap: 7vw;
+}
+
+.sectionMark {
+  font: 400 68px/1 Georgia, serif;
+  color: #ef4d17;
+}
+
+.label {
+  margin: 0 0 22px;
+}
+
+.judgment h2,
+.aiSection h2 {
+  font: 500 clamp(25px, 3.2vw, 43px)/1.35 Georgia, "Songti SC", serif;
+  margin: 0;
+  letter-spacing: -.025em;
+}
+
+.splitSection,
+.evidenceSection,
+.aiSection {
+  border-top: 1px solid #c8c4ba;
+  padding: 52px 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 680px);
+  gap: 7vw;
+}
+
+.body {
+  font: 20px/1.8 Georgia, "Songti SC", serif;
+  margin: 0;
+  color: #3e3c38;
+}
+
+.result {
+  font: 600 21px/1.7 Arial, "Noto Sans SC", sans-serif;
+  margin: 34px 0 18px;
+}
+
+.arrowLink {
+  display: inline-block;
+  color: #ee4d14;
+  text-decoration: none;
+  font-size: 13px;
+  border-bottom: 1px solid #ee4d14;
+  padding-bottom: 5px;
+}
+
+.arrowLink span {
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+.evidencePrompt {
+  max-width: 620px;
+  margin-top: 46px;
+  padding-top: 26px;
+  border-top: 1px solid #d0ccc2;
+}
+
+.evidencePromptText {
+  margin: 0 0 16px;
+  color: #6a665f;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.evidencePromptButton {
+  appearance: none;
+  border: 0;
+  border-bottom: 1px solid #ee4d14;
+  border-radius: 999px;
+  background: transparent;
+  color: #151515;
+  cursor: pointer;
+  font: 600 14px/1 Arial, "Noto Sans SC", sans-serif;
+  padding: 10px 0 8px 24px;
+  position: relative;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.evidencePromptButton::before {
+  background: #ee4d14;
+  border-radius: 50%;
+  content: "";
+  height: 10px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+}
+
+.evidencePromptButton:hover {
+  color: #ee4d14;
+  transform: translateY(-1px);
+}
+
+.evidencePromptButton:focus-visible,
+.portalClose:focus-visible,
+.nav a:focus-visible,
+.arrowLink:focus-visible,
+.footer a:focus-visible {
+  outline: 2px solid #ee4d14;
+  outline-offset: 4px;
+}
+
+.portalBackdrop {
+  --portal-origin-x: 50vw;
+  --portal-origin-y: 50vh;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  min-height: 100vh;
+  overflow-x: clip;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #11100e;
+  color: #f6efe5;
+  clip-path: circle(0 at var(--portal-origin-x) var(--portal-origin-y));
+  animation: evidencePortalOpen 620ms cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.phaseopen {
+  clip-path: circle(150vmax at var(--portal-origin-x) var(--portal-origin-y));
+  animation: none;
+}
+
+.phaseclosing {
+  clip-path: circle(150vmax at var(--portal-origin-x) var(--portal-origin-y));
+  animation: evidencePortalClose 360ms cubic-bezier(.55, .08, .68, .53) forwards;
+}
+
+.portalChrome {
+  min-height: 100vh;
+  padding: 28px 5vw 64px;
+}
+
+.portalClose {
+  position: fixed;
+  top: 28px;
+  right: 5vw;
+  z-index: 1;
+  appearance: none;
+  border: 1px solid rgba(246, 239, 229, .42);
+  border-radius: 999px;
+  background: rgba(17, 16, 14, .72);
+  color: #f6efe5;
+  cursor: pointer;
+  font: 600 13px/1 Arial, "Noto Sans SC", sans-serif;
+  padding: 12px 15px;
+}
+
+.portalContent {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 10vh 0 0;
+}
+
+.portalEyebrow {
+  margin: 0 0 22px;
+  color: #ff6a2f;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.portalContent h2 {
+  max-width: 760px;
+  margin: 0;
+  font: 500 clamp(42px, 7vw, 92px)/1.02 Georgia, "Songti SC", serif;
+}
+
+.portalIntro {
+  max-width: 640px;
+  margin: 30px 0 58px;
+  color: #bbb2a5;
+  font: 18px/1.8 Georgia, "Songti SC", serif;
+}
+
+.portalGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(246, 239, 229, .18);
+  border: 1px solid rgba(246, 239, 229, .18);
+}
+
+.portalCard {
+  min-height: 330px;
+  padding: 28px 24px 30px;
+  background: #171512;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: evidenceContentIn 520ms cubic-bezier(.22, 1, .36, 1) forwards;
+  animation-delay: calc(180ms + var(--stagger-index, 0) * 80ms);
+}
+
+.portalCard span {
+  display: block;
+  margin-bottom: 58px;
+  color: #ff6a2f;
+  font: 12px/1 Georgia, serif;
+}
+
+.portalCard h3 {
+  margin: 0 0 20px;
+  color: #fff8ed;
+  font: 500 24px/1.25 Georgia, "Songti SC", serif;
+}
+
+.portalCard p {
+  margin: 0;
+  color: #cfc5b7;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.aiSection {
+  background: #e9e5dc;
+  margin: 0 -5.5vw;
+  padding-left: 5.5vw;
+  padding-right: 5.5vw;
+}
+
+.aiNote {
+  margin: 28px 0 0;
+  max-width: 570px;
+  color: #5c5952;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.boundary {
+  border: 1px solid #bcb7ad;
+  margin: 62px 0 0;
+  padding: 18px 22px;
+  display: flex;
+  gap: 30px;
+  align-items: baseline;
+}
+
+.boundary span {
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: #ef4d17;
+  white-space: nowrap;
+}
+
+.boundary p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #5a5750;
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 54px;
+  font-size: 12px;
+  color: #67635b;
+}
+
+.footer a {
+  color: #151515;
+  text-decoration: none;
+}
+
+@keyframes evidencePortalOpen {
+  from {
+    clip-path: circle(0 at var(--portal-origin-x) var(--portal-origin-y));
+  }
+
+  to {
+    clip-path: circle(150vmax at var(--portal-origin-x) var(--portal-origin-y));
+  }
+}
+
+@keyframes evidencePortalClose {
+  from {
+    clip-path: circle(150vmax at var(--portal-origin-x) var(--portal-origin-y));
+  }
+
+  to {
+    clip-path: circle(0 at var(--portal-origin-x) var(--portal-origin-y));
+  }
+}
+
+@keyframes evidenceContentIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .portalGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portalCard {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 20px 6vw 48px;
+  }
+
+  .nav div {
+    gap: 14px;
+    font-size: 12px;
+  }
+
+  .header {
+    padding: 22vw 0 18vw;
+  }
+
+  .header h1 {
+    font-size: 44px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .section,
+  .splitSection,
+  .evidenceSection,
+  .aiSection {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 18px;
+    padding: 36px 0;
+  }
+
+  .sectionMark {
+    font-size: 36px;
+  }
+
+  .body {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .judgment h2,
+  .aiSection h2 {
+    font-size: 27px;
+  }
+
+  .evidencePrompt {
+    margin-top: 34px;
+  }
+
+  .evidencePromptButton {
+    width: 100%;
+  }
+
+  .portalChrome {
+    padding: 22px 6vw 44px;
+  }
+
+  .portalClose {
+    top: 20px;
+    right: 6vw;
+  }
+
+  .portalContent {
+    padding-top: 12vh;
+  }
+
+  .portalContent h2 {
+    font-size: 44px;
+    line-height: 1.12;
+  }
+
+  .portalIntro {
+    margin: 24px 0 36px;
+    font-size: 16px;
+  }
+
+  .portalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .portalCard {
+    min-height: auto;
+  }
+
+  .portalCard span {
+    margin-bottom: 34px;
+  }
+
+  .aiSection {
+    margin: 0 -6vw;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .boundary {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .boundary p {
+    margin-top: 10px;
+  }
+
+  .footer {
+    gap: 16px;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evidencePromptButton,
+  .portalBackdrop,
+  .phaseopen,
+  .phaseclosing,
+  .portalCard {
+    transition: none;
+    animation: none;
+  }
+
+  .evidencePromptButton:hover {
+    transform: none;
+  }
+
+  .portalBackdrop,
+  .phaseopen,
+  .phaseclosing {
+    clip-path: none;
+  }
+
+  .portalCard {
+    opacity: 1;
+    transform: none;
+  }
+}
