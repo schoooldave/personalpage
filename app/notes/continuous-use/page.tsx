@@ -67,7 +67,7 @@ export default function ContinuousUsePage() {
           <h2>上线之后，变化才真正开始。</h2>
           <span>DEPLOY / USE / ADOPT</span>
         </div>
-        <div className={styles.compareGrid}>
+        <div className={`${styles.compareGrid} ${styles.threeColumnGrid}`}>
           {note.track.map((step) => (
             <div className={styles.compareColumn} key={step.label}>
               <h3><small>{step.label}</small>{step.note}</h3>
