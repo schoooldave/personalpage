@@ -116,7 +116,7 @@
 }
 
 .stickyStageNearEnd .sceneActive[data-scene="3"] .judgmentNav {
-  transform: translate3d(0, -4vh, 0) scale(.9);
+  transform: translate3d(0, -15vh, 0) scale(.9);
   transform-origin: 100% 100%;
 }
 
