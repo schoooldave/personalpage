@@ -30,8 +30,8 @@ describe("field note judgment navigation", () => {
   it("exposes concise navigation labels for the three industry judgments", () => {
     expect(fieldNoteJudgments.map((judgment) => judgment.navTitle)).toEqual([
       "数据不等于价值",
-      "系统不等于流程",
-      "上线不等于改变",
+      "系统不等于业务闭环",
+      "上线不等于持续使用",
     ]);
   });
 });

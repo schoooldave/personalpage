@@ -10,7 +10,7 @@ export default function FieldNotesPage() {
     <main className={styles.page}>
       <nav className={styles.nav} aria-label="Field Notes 导航">
         <Link href="/" className={styles.brand}><strong>现代工作笔记</strong><span>Modern Field Notes</span></Link>
-        <div className={styles.navLinks}><Link href="/">工作首页</Link><Link href="/notes/system-process">系统不等于流程</Link><Link href="/cases/dms">DMS 案例</Link><Link href="/about">关于我</Link></div>
+        <div className={styles.navLinks}><Link href="/">工作首页</Link><Link href="/notes/system-process">系统不等于业务闭环</Link><Link href="/cases/dms">DMS 案例</Link><Link href="/about">关于我</Link></div>
       </nav>
 
       <header className={styles.header}>

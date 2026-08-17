@@ -83,7 +83,7 @@ export const fieldNotes = [{
 
 export const systemProcessNote = {
   slug: "system-is-not-process",
-  title: "系统不等于流程",
+  title: "系统不等于业务闭环",
   eyebrow: "FMCG BUSINESS & SYSTEM DESIGN",
   question: "为什么系统里的步骤都对，到了现场却仍然需要反复解释、协调和绕行？",
   judgment: "系统可以承载流程，但不能自动生成流程。真实流程还包括判断、例外处理、角色协同和责任承接。",
@@ -152,8 +152,8 @@ export const fieldNoteJudgments = [
   },
   {
     number: "02",
-    navTitle: "系统不等于流程",
-    title: "系统不等于流程",
+    navTitle: "系统不等于业务闭环",
+    title: "系统不等于业务闭环",
     body: "系统可以记录流程和结果，但问题的解决仍然需要组织协同、管理反馈和持续调整。",
     track: [
       { label: "系统", note: "记录流程、状态与业务结果。" },
@@ -163,8 +163,8 @@ export const fieldNoteJudgments = [
   },
   {
     number: "03",
-    navTitle: "上线不等于改变",
-    title: "上线不等于改变",
+    navTitle: "上线不等于持续使用",
+    title: "上线不等于持续使用",
     body: "系统完成上线，只代表功能进入了组织。真正的改变还取决于流程是否顺畅、角色是否接受，以及管理机制是否能够持续推动使用。",
     track: [
       { label: "部署", note: "功能进入组织，完成技术交付。" },

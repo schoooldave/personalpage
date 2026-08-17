@@ -36,7 +36,7 @@ describe("portfolio content baseline", () => {
   });
 
   it("exposes the system-is-not-process article as three distinct process breaks", () => {
-    expect(systemProcessNote.title).toBe("系统不等于流程");
+    expect(systemProcessNote.title).toBe("系统不等于业务闭环");
     expect(systemProcessNote.comparison.system).toHaveLength(3);
     expect(systemProcessNote.comparison.real).toHaveLength(3);
     expect(systemProcessNote.sections.map((section) => section.title)).toEqual([
@@ -49,8 +49,8 @@ describe("portfolio content baseline", () => {
   it("exposes the three ordered FMCG judgments", () => {
     expect(fieldNoteJudgments.map((item) => item.title)).toEqual([
       "数据不等于价值",
-      "系统不等于流程",
-      "上线不等于改变",
+      "系统不等于业务闭环",
+      "上线不等于持续使用",
     ]);
     expect(fieldNoteJudgments.every((item) => item.body.length > 20)).toBe(true);
     expect(fieldNoteJudgments.map((item) => item.number)).toEqual(["01", "02", "03"]);
