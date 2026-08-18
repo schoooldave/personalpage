@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fieldNoteJudgments, fieldNotes, portfolioSummary, systemProcessNote, workCases } from "./portfolio";
+import { caseDetails, fieldNoteJudgments, fieldNotes, portfolioSummary, systemProcessNote, workCases } from "./portfolio";
 
 describe("portfolio content baseline", () => {
   it("keeps the recruiter-facing summary grounded", () => {
@@ -9,6 +9,44 @@ describe("portfolio content baseline", () => {
 
   it("exposes the two verified work case entry points", () => {
     expect(workCases.map((item) => item.id)).toEqual(["dms", "sfa"]);
+  });
+
+  it("keeps the DMS case grounded and structured for the case page", () => {
+    const dms = caseDetails.dms;
+    expect(dms.title).toBe("全国分销数据治理项目");
+    expect(dms.period).toBe("2023—2024");
+    expect(dms.signals.map(([value]) => value)).toEqual(["65%", "800+", "约 80%"]);
+    expect(dms.method).toHaveLength(5);
+    expect(dms.contributions).toHaveLength(4);
+    expect(dms.tensions).toHaveLength(3);
+    expect(JSON.stringify(dms)).not.toMatch(/Top 300|2025 年 10 月|80\+|31省|619家|70万\+/);
+  });
+
+  it("structures SFA as a product line with two independent iterations", () => {
+    const sfa = caseDetails.sfa;
+    expect(sfa.title).toBe("SFA 销售执行产品线实践");
+    expect(sfa.domains).toEqual([
+      "门店拜访",
+      "活动执行",
+      "陈列检查",
+      "费用采集",
+      "门店评分",
+      "主数据",
+      "权限管理",
+    ]);
+    expect(sfa.lifecycle).toHaveLength(7);
+    expect(sfa.iterations.map((item) => item.id)).toEqual([
+      "high-potential-store",
+      "permission-governance",
+    ]);
+    expect(sfa.iterations.every((item) => item.problem && item.contribution.length && item.outcome.length)).toBe(true);
+  });
+
+  it("keeps SFA claims within the confirmed responsibility boundary", () => {
+    const serialized = JSON.stringify(caseDetails.sfa);
+    expect(serialized).toContain("业务团队负责指标定义与评分规则");
+    expect(serialized).toContain("上级经理统筹整体营销产品规划");
+    expect(serialized).not.toMatch(/我定义了评分标准|整体营销产品方向负责人|提升\d+%/);
   });
 
   it("keeps Field Notes judgment, evidence, projection, and boundary separate", () => {
