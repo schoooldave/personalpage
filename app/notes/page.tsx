@@ -3,6 +3,7 @@ import { fieldNotes } from "@/lib/portfolio";
 import EvidencePortal from "./EvidencePortal";
 import LanguageSwitcher from "@/app/LanguageSwitcher";
 import { getRequestLocale } from "@/lib/i18n/server";
+import { localizePath } from "@/lib/i18n/config";
 import styles from "./notes.module.css";
 
 export default function FieldNotesPage() {
@@ -14,7 +15,7 @@ export default function FieldNotesPage() {
     <main className={styles.page}>
       <nav className={styles.nav} aria-label="Field Notes 导航">
         <Link href="/" className={styles.brand}><strong>{ui.brand}</strong><span>Modern Field Notes</span></Link>
-        <div className={styles.navLinks}><Link href="/">{ui.home}</Link><Link href="/notes/system-process">{ui.system}</Link><Link href="/cases/dms">{ui.dms}</Link><Link href="/about">{ui.about}</Link></div><LanguageSwitcher locale={locale} pathname="/notes" />
+        <div className={styles.navLinks}><Link href={localizePath("/", locale)}>{ui.home}</Link><Link href={localizePath("/notes/system-process", locale)}>{ui.system}</Link><Link href={localizePath("/cases/dms", locale)}>{ui.dms}</Link><Link href={localizePath("/about", locale)}>{ui.about}</Link></div><LanguageSwitcher locale={locale} pathname="/notes" />
       </nav>
 
       <header className={styles.header}>
@@ -47,7 +48,7 @@ export default function FieldNotesPage() {
 
       <section className={styles.conclusion}><div className={styles.conclusionMark}>→</div><div><h2>从贡献数据到改变行动，中间仍有一段需要被修复的距离。</h2><p>系统建设只是其中一部分。只有重新理解不同角色承担的成本与获得的价值，并让数据进入可靠治理、具体判断和管理行动，更多数据才可能转化为更好的经营认知。</p><p className={styles.boundary}>{note.boundary}</p></div></section>
 
-      <footer className={styles.footer}><Link href="/">{ui.back}</Link><span>FMCG FIELD NOTES / 01</span></footer>
+      <footer className={styles.footer}><Link href={localizePath("/", locale)}>{ui.back}</Link><span>FMCG FIELD NOTES / 01</span></footer>
     </main>
   );
 }
