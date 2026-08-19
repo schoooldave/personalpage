@@ -129,7 +129,7 @@ const enCaseDetails = {
     label: "PROJECT 02 / OPERATING MODEL",
     summary: "SFA was not a one-off large project, but a product line that continuously absorbed sales execution needs: I translated complex store-scoring standards into executable system capabilities, and traced permission exceptions back to organizational and store relationships to keep reducing business usage and management cost.",
     role: "SFA product engineer / SFA product line owner",
-    judgment: "The long-term value of SFA is not how many features are launched, but whether business requirements become easier to execute, frontline complexity becomes visible, and repeated issues are沉淀 into maintainable processes, data and relationship models.",
+    judgment: "The long-term value of SFA is not how many features are launched, but whether business requirements become easier to execute, frontline complexity becomes visible, and repeated issues become maintainable processes, data and relationship models.",
     domains: ["Store visits", "Campaign execution", "Display inspection", "Expense collection", "Store scoring", "Master data", "Permission management"],
     lifecycle: [
       { title: "Requirement intake", body: "Understand business problems raised by headquarters functions and frontline sales." },
@@ -161,7 +161,7 @@ const enCaseDetails = {
         problem: "After organizational and regional function adjustments, supervisors and frontline staff experienced invisible stores and approval exceptions.",
         evidence: ["Organizational relationship changes", "Position and personnel affiliation", "Store visibility scope", "Approval-chain exceptions"],
         responsibility: "Under the overall marketing product plan, I led the permission-issue initiative: from exception diagnosis and relationship-model design to business-engineering coordination, testing, launch and result tracking, I was responsible for closing the solution loop.",
-        contribution: ["Located root causes", "Mapped organization-store relationships", "Prepared relationship-model redesign方案", "Coordinated business and engineering", "Drove testing, launch and result tracking"],
+        contribution: ["Located root causes", "Mapped organization-store relationships", "Prepared a relationship-model redesign", "Coordinated business and engineering", "Drove testing, launch and result tracking"],
         outcome: ["Invisible-store issues decreased", "The impact of organizational adjustment on permission usage was reduced", "Later organizational adjustments did not trigger large-scale recurrence of similar issues"],
         insight: "Repeated permission failures are often not page-configuration problems; they reflect dynamic business relationships that the system has not expressed stably.",
       },
@@ -221,17 +221,17 @@ const jaSummary = {
 const jaWorkCases = [
   {
     id: "dms",
-    title: "全国分销データガバナンスプロジェクト",
+    title: "全国流通データガバナンスプロジェクト",
     period: "2023—2025",
     metric: "約 85%",
-    metricLabel: "最終上线率",
+    metricLabel: "最終稼働率",
   },
   {
     id: "sfa",
     title: "SFA 営業実行プロダクトライン実践",
     period: "2022—2025",
     metric: "継続改善",
-    metricLabel: "機能納品から関係治理へ",
+    metricLabel: "機能提供から関係ガバナンスへ",
   },
 ] as const;
 
