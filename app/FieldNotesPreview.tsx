@@ -8,10 +8,18 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import { fieldNoteJudgments } from "@/lib/portfolio";
+import type { Locale } from "@/lib/i18n/config";
 import { clampProgress, sceneFromProgress } from "./field-notes/scene-progress";
 import styles from "./fieldnotes.module.css";
 
-export default function FieldNotesPreview() {
+export default function FieldNotesPreview({ locale }: { locale: Locale }) {
+  const labels = locale === "en" ? {
+    section: "Field Notes", note: ["Data does not equal value", "A system does not equal a business loop", "Go-live does not equal continued use"], open: "Open field note ↗"
+  } : locale === "ja" ? {
+    section: "業界ノート", note: ["データは価値そのものではない", "システムは業務の完結ではない", "稼働は継続利用を意味しない"], open: "ノートを読む ↗"
+  } : {
+    section: "行业思考", note: ["数据不等于价值", "系统不等于业务闭环", "上线不等于持续使用"], open: "打开行业笔记 ↗"
+  };
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const sceneRefs = useRef<Array<HTMLElement | null>>([]);
@@ -167,7 +175,7 @@ export default function FieldNotesPreview() {
       >
         <aside className={styles.chapterRail}>
           <span>02</span>
-          <p>行业思考<br /><small>FMCG FIELD NOTES</small></p>
+          <p>{labels.section}<br /><small>FMCG FIELD NOTES</small></p>
           <i
             style={{ "--scene-index": activeScene } as CSSProperties}
             aria-hidden="true"
@@ -250,9 +258,9 @@ export default function FieldNotesPreview() {
           onPointerEnter={() => setActiveFeatured(0)}
           onBlur={() => setActiveFeatured(null)}
         >
-          <small>行业思考 / FIELD NOTE 01</small>
-          <strong>{fieldNoteJudgments[0].title}</strong>
-          <span>打开行业笔记 ↗</span>
+          <small>{labels.section} / FIELD NOTE 01</small>
+          <strong>{labels.note[0]}</strong>
+          <span>{labels.open}</span>
         </a>
         <a
           className={`${styles.featuredNote} ${activeFeatured === 1 ? styles.featuredNoteActive : ""}`}
@@ -261,9 +269,9 @@ export default function FieldNotesPreview() {
           onPointerEnter={() => setActiveFeatured(1)}
           onBlur={() => setActiveFeatured(null)}
         >
-          <small>行业思考 / FIELD NOTE 02</small>
-          <strong>{fieldNoteJudgments[1].title}</strong>
-          <span>打开行业笔记 ↗</span>
+          <small>{labels.section} / FIELD NOTE 02</small>
+          <strong>{labels.note[1]}</strong>
+          <span>{labels.open}</span>
         </a>
         <a
           className={`${styles.featuredNote} ${activeFeatured === 2 ? styles.featuredNoteActive : ""}`}
@@ -272,9 +280,9 @@ export default function FieldNotesPreview() {
           onPointerEnter={() => setActiveFeatured(2)}
           onBlur={() => setActiveFeatured(null)}
         >
-          <small>行业思考 / FIELD NOTE 03</small>
-          <strong>{fieldNoteJudgments[2].title}</strong>
-          <span>打开行业笔记 ↗</span>
+          <small>{labels.section} / FIELD NOTE 03</small>
+          <strong>{labels.note[2]}</strong>
+          <span>{labels.open}</span>
         </a>
       </div>
     </section>

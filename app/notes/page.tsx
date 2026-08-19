@@ -8,12 +8,13 @@ import styles from "./notes.module.css";
 export default function FieldNotesPage() {
   const note = fieldNotes[0];
   const locale = getRequestLocale();
+  const ui = locale === "en" ? { brand: "Modern Field Notes", home: "Work home", system: "A system does not equal a business loop", dms: "DMS case", about: "About me", question: "What does this note explore?", aside: "Why can data, once collected, still fail to enter real business decisions?", back: "← Back to work home" } : locale === "ja" ? { brand: "現代の仕事ノート", home: "仕事のホーム", system: "システムは業務の完結ではない", dms: "DMS ケース", about: "私について", question: "このノートのテーマ", aside: "データを集めても、なぜ実際の業務判断につながらないのでしょうか。", back: "← 仕事のホームへ" } : { brand: "现代工作笔记", home: "工作首页", system: "系统不等于业务闭环", dms: "DMS 案例", about: "关于我", question: "文章讨论什么？", aside: "不是如何建设一套 DMS，而是为什么有系统、有数据，仍然可能停留在管理要求，没有进入真实经营。", back: "← 回到工作首页" };
 
   return (
     <main className={styles.page}>
       <nav className={styles.nav} aria-label="Field Notes 导航">
-        <Link href="/" className={styles.brand}><strong>现代工作笔记</strong><span>Modern Field Notes</span></Link>
-        <div className={styles.navLinks}><Link href="/">工作首页</Link><Link href="/notes/system-process">系统不等于业务闭环</Link><Link href="/cases/dms">DMS 案例</Link><Link href="/about">关于我</Link></div><LanguageSwitcher locale={locale} pathname="/notes" />
+        <Link href="/" className={styles.brand}><strong>{ui.brand}</strong><span>Modern Field Notes</span></Link>
+        <div className={styles.navLinks}><Link href="/">{ui.home}</Link><Link href="/notes/system-process">{ui.system}</Link><Link href="/cases/dms">{ui.dms}</Link><Link href="/about">{ui.about}</Link></div><LanguageSwitcher locale={locale} pathname="/notes" />
       </nav>
 
       <header className={styles.header}>
@@ -24,7 +25,7 @@ export default function FieldNotesPage() {
           <p className={styles.headerQuestion}>{note.subtitle}</p>
           <p className={styles.subtitle}>{note.judgment}</p>
         </div>
-        <aside className={styles.headerAside}><strong>文章讨论什么？</strong><p>不是如何建设一套 DMS，而是为什么“有系统、有数据”仍然可能停留在管理要求，没有进入真实经营。</p></aside>
+        <aside className={styles.headerAside}><strong>{ui.question}</strong><p>{ui.aside}</p></aside>
       </header>
 
       <section className={styles.thesisBand}><div className={styles.thesisMark}>“</div><div><p>{note.judgment}</p><span>THE HIDDEN ASYMMETRY OF DATA VALUE</span></div></section>
@@ -46,7 +47,7 @@ export default function FieldNotesPage() {
 
       <section className={styles.conclusion}><div className={styles.conclusionMark}>→</div><div><h2>从贡献数据到改变行动，中间仍有一段需要被修复的距离。</h2><p>系统建设只是其中一部分。只有重新理解不同角色承担的成本与获得的价值，并让数据进入可靠治理、具体判断和管理行动，更多数据才可能转化为更好的经营认知。</p><p className={styles.boundary}>{note.boundary}</p></div></section>
 
-      <footer className={styles.footer}><Link href="/">← 回到工作首页</Link><span>FMCG FIELD NOTES / 01</span></footer>
+      <footer className={styles.footer}><Link href="/">{ui.back}</Link><span>FMCG FIELD NOTES / 01</span></footer>
     </main>
   );
 }
