@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { fieldNoteJudgments } from "@/lib/portfolio";
+import { getRequestLocale } from "@/lib/i18n/server";
+import LanguageSwitcher from "@/app/LanguageSwitcher";
 import styles from "../system-process/system-process.module.css";
 
 const note = fieldNoteJudgments[2];
@@ -41,11 +43,12 @@ const sections = [
 ] as const;
 
 export default function ContinuousUsePage() {
+  const locale = getRequestLocale();
   return (
     <main className={styles.page}>
       <nav className={styles.nav} aria-label="Field Notes 导航">
         <Link href="/" className={styles.brand}>现代工作笔记</Link>
-        <span>FMCG FIELD NOTES / 03</span>
+        <span>FMCG FIELD NOTES / 03</span><LanguageSwitcher locale={locale} pathname="/notes/continuous-use" />
       </nav>
 
       <header className={styles.hero}>

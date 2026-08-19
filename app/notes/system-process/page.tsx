@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { systemProcessNote } from "@/lib/portfolio";
+import { getRequestLocale } from "@/lib/i18n/server";
+import LanguageSwitcher from "@/app/LanguageSwitcher";
 import styles from "./system-process.module.css";
 
 export default function SystemProcessPage() {
   const note = systemProcessNote;
+  const locale = getRequestLocale();
 
   return (
     <main className={styles.page}>
-      <nav className={styles.nav} aria-label="Field Notes 导航"><Link href="/" className={styles.brand}>现代工作笔记</Link><span>FMCG FIELD NOTES / 02</span></nav>
+      <nav className={styles.nav} aria-label="Field Notes navigation"><Link href="/" className={styles.brand}>{locale === "en" ? "Modern Field Notes" : locale === "ja" ? "現代の仕事ノート" : "现代工作笔记"}</Link><span>FMCG FIELD NOTES / 02</span><LanguageSwitcher locale={locale} pathname="/notes/system-process" /></nav>
       <header className={styles.hero}>
         <div className={styles.number}>02</div>
         <div><p className={styles.eyebrow}>{note.eyebrow}</p><h1>{note.title}</h1><h2>{note.judgment}</h2><p>{note.question}</p></div>
