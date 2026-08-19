@@ -11,8 +11,11 @@ export function middleware(request: NextRequest) {
   const rewritten = request.nextUrl.clone();
   rewritten.pathname = pathname.replace(localePattern, "") || "/";
 
-  const response = NextResponse.rewrite(rewritten);
-  response.headers.set("x-site-locale", locale);
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-site-locale", locale);
+  const response = NextResponse.rewrite(rewritten, {
+    request: { headers: requestHeaders },
+  });
   return response;
 }
 
