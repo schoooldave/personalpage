@@ -1,16 +1,19 @@
 import Link from "next/link";
 import { fieldNotes } from "@/lib/portfolio";
 import EvidencePortal from "./EvidencePortal";
+import LanguageSwitcher from "@/app/LanguageSwitcher";
+import { getRequestLocale } from "@/lib/i18n/server";
 import styles from "./notes.module.css";
 
 export default function FieldNotesPage() {
   const note = fieldNotes[0];
+  const locale = getRequestLocale();
 
   return (
     <main className={styles.page}>
       <nav className={styles.nav} aria-label="Field Notes 导航">
         <Link href="/" className={styles.brand}><strong>现代工作笔记</strong><span>Modern Field Notes</span></Link>
-        <div className={styles.navLinks}><Link href="/">工作首页</Link><Link href="/notes/system-process">系统不等于业务闭环</Link><Link href="/cases/dms">DMS 案例</Link><Link href="/about">关于我</Link></div>
+        <div className={styles.navLinks}><Link href="/">工作首页</Link><Link href="/notes/system-process">系统不等于业务闭环</Link><Link href="/cases/dms">DMS 案例</Link><Link href="/about">关于我</Link></div><LanguageSwitcher locale={locale} pathname="/notes" />
       </nav>
 
       <header className={styles.header}>

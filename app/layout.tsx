@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getRequestLocale } from "@/lib/i18n/server";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -23,8 +24,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = getRequestLocale();
   return (
-    <html lang="zh-CN">
+    <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
