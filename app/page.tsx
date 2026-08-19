@@ -9,7 +9,6 @@ import FieldNotesPreview from "./FieldNotesPreview";
 import AIOutlook from "./AIOutlook";
 import PersonalWorld from "./PersonalWorld";
 import PersonalHero from "./PersonalHero";
-import { portfolioSummary, workCases } from "@/lib/portfolio";
 import { usePathname } from "next/navigation";
 import { normalizeLocale } from "@/lib/i18n/config";
 import { localizedPortfolio } from "@/lib/i18n/portfolio";
