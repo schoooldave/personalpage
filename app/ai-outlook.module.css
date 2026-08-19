@@ -1,0 +1,16 @@
+.section{position:relative;z-index:1;display:grid;grid-template-columns:24% 1fr;border-bottom:1px solid currentColor;background:rgba(255,255,255,.08)}
+.sectionLabel{display:block;padding:45px 5vw;border-right:1px solid currentColor}
+.sectionLabel span{display:block;color:var(--orange);font-size:74px;line-height:.8}
+.sectionLabel p{margin:26px 0 0;font-family:'Noto Serif SC',serif;line-height:1.6}
+.sectionLabel small{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.12em;opacity:.55}
+.content{padding:52px 4vw 60px}
+.eyebrow,.cardEyebrow{color:var(--orange);font-size:10px;letter-spacing:.14em}
+.eyebrow{margin:0 0 20px}
+.content h2{max-width:800px;margin:0 0 18px;font-family:'Noto Serif SC',serif;font-size:clamp(30px,4vw,58px);line-height:1.2;letter-spacing:-.04em;font-weight:600}
+.lead{max-width:760px;margin:0;color:currentColor;opacity:.7;font-size:16px;line-height:1.85}
+.emphasis{display:inline-block;color:inherit;transition:color 350ms ease,transform 350ms ease}:global(.motion-ai-outlook.is-visible) .emphasis{color:var(--orange);transform:translateY(-2px)}:global(.motion-ai-outlook.is-visible) .emphasis:nth-of-type(2){transition-delay:120ms}:global(.motion-ai-outlook.is-visible) .emphasis:nth-of-type(3){transition-delay:240ms}
+.cta{display:inline-block;margin-top:34px;border-bottom:1px solid currentColor;padding-bottom:8px;font-size:12px}.cta span{margin-left:24px;font-size:18px;color:var(--orange)}
+@media(max-width:720px){.section{display:block}.sectionLabel{border-right:0;border-bottom:1px solid currentColor;padding:32px 8vw}.content{padding:38px 8vw 45px}}
+
+.section{border-bottom-color:rgba(23,23,20,.22)}
+.sectionLabel{border-right-color:rgba(23,23,20,.32)}

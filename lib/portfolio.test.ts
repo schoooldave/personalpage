@@ -14,8 +14,8 @@ describe("portfolio content baseline", () => {
   it("keeps the DMS case grounded and structured for the case page", () => {
     const dms = caseDetails.dms;
     expect(dms.title).toBe("全国分销数据治理项目");
-    expect(dms.period).toBe("2023—2024");
-    expect(dms.signals.map(([value]) => value)).toEqual(["65%", "800+", "约 80%"]);
+    expect(dms.period).toBe("2023—2025");
+    expect(dms.signals.map(([value]) => value)).toEqual(["65%", "800+", "约 85%"]);
     expect(dms.method).toHaveLength(5);
     expect(dms.contributions).toHaveLength(4);
     expect(dms.tensions).toHaveLength(3);
@@ -45,7 +45,7 @@ describe("portfolio content baseline", () => {
   it("keeps SFA claims within the confirmed responsibility boundary", () => {
     const serialized = JSON.stringify(caseDetails.sfa);
     expect(serialized).toContain("业务团队负责指标定义与评分规则");
-    expect(serialized).toContain("上级经理统筹整体营销产品规划");
+    expect(serialized).toContain("我主导权限问题专项");
     expect(serialized).not.toMatch(/我定义了评分标准|整体营销产品方向负责人|提升\d+%/);
   });
 
