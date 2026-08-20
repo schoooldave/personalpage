@@ -11,6 +11,8 @@ import PersonalWorld from "./PersonalWorld";
 import PersonalHero from "./PersonalHero";
 import { usePathname } from "next/navigation";
 import { normalizeLocale } from "@/lib/i18n/config";
+import { localizePath } from "@/lib/i18n/config";
+import { localizedCasePath } from "@/lib/i18n/routes";
 import { localizedPortfolio } from "@/lib/i18n/portfolio";
 import { siteContent } from "@/lib/i18n/content";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -106,7 +108,7 @@ export default function Home() {
     <StarMap active={world === "personal"} />
     <nav className={styles.nav} aria-label={copy.nav.mainLabel}>
       <span className={styles.brand}>{world === "work" ? <><b>{copy.nav.brandWorkTitle}</b><small>{copy.nav.brandWorkSubtitle}</small></> : copy.nav.brandPersonal}</span>
-      <div className={styles.navLinks}>{world === "work" && <a href="#cases">{copy.nav.workFiles}</a>}{world === "work" && <a href="/notes">{copy.nav.fieldNotes}</a>}<a href="/about">{copy.nav.about}</a><LanguageSwitcher locale={locale} pathname={pathname} /><button type="button" onClick={toggleWorld}>{world === "personal" ? copy.nav.enterWork : copy.nav.enterPersonal}</button></div>
+      <div className={styles.navLinks}>{world === "work" && <a href="#cases">{copy.nav.workFiles}</a>}{world === "work" && <a href={localizePath("/notes", locale)}>{copy.nav.fieldNotes}</a>}<a href={localizePath("/about", locale)}>{copy.nav.about}</a><LanguageSwitcher locale={locale} pathname={pathname} /><button type="button" onClick={toggleWorld}>{world === "personal" ? copy.nav.enterWork : copy.nav.enterPersonal}</button></div>
     </nav>
     {world === "personal" ? <PersonalHero onToggle={toggleWorld} copy={copy.personalHero} /> : <section className={styles.hero} id="about">
       <p className={styles.eyebrow}>{copy.home.workHero.eyebrow}</p>
@@ -117,17 +119,17 @@ export default function Home() {
       <div className={`${effects.workHeroVisual} ${world === "work" ? effects.workVisualActive : ""}`} aria-hidden="true"><Image src="/images/work-world-field.png" alt="" fill priority sizes="(max-width: 720px) 92vw, 45vw" /></div>
       {world === "work" && <div className={styles.industryMark} aria-label={copy.home.workHero.industry.label}><span>{copy.home.workHero.industry.label}</span><small>{copy.home.workHero.industry.caption}</small><b>●</b></div>}
     </section>}
-    {world === "work" && <section className={`${styles.careerArc} motion-career-arc`} aria-label={copy.home.careerArc.label}><div className={styles.arcTitle}><span>{copy.home.careerArc.index}</span><p>{copy.home.careerArc.label}<br /><small>{copy.home.careerArc.caption}</small></p><h2 style={{ fontSize: "clamp(28px, 2.2vw, 36px)", lineHeight: 1.3 }}>{copy.home.careerArc.title.split("\n").map((line) => <span key={line}>{line}<br /></span>)}</h2><p className={styles.arcIntro}>{copy.home.careerArc.intro}</p></div><div className={styles.arcSteps}>{copy.home.careerArc.steps.map((step) => <div className="motion-arc-step" key={step.title}><b>{step.title}</b><strong>{step.headline}</strong><p>{step.body}</p><em>{step.meta.split("\n").map((line) => <span key={line}>{line}<br /></span>)}</em></div>)}</div></section>}
+    {world === "work" && <section className={`${styles.careerArc} motion-career-arc`} aria-label={copy.home.careerArc.label}><div className={styles.arcTitle}><span>{copy.home.careerArc.index}</span><p>{copy.home.careerArc.label}<br /><small>{copy.home.careerArc.caption}</small></p></div><div className={styles.arcContent}><h2>{copy.home.careerArc.title.replace(/\n/g, " ")}</h2><p className={styles.arcIntro}>{copy.home.careerArc.intro}</p><div className={styles.arcSteps}>{copy.home.careerArc.steps.map((step) => <div className="motion-arc-step" key={step.title}><b>{step.title}</b><strong>{step.headline}</strong><p>{step.body}</p><em>{step.meta.split("\n").map((line) => <span key={line}>{line}<br /></span>)}</em></div>)}</div></div></section>}
     {world === "work" && <FieldNotesPreview locale={locale} />}
-    {world === "personal" && <PersonalWorld onToggle={toggleWorld} copy={copy.personalWorld} />}
+    {world === "personal" && <PersonalWorld onToggle={toggleWorld} copy={copy.personalWorld} locale={locale} />}
     {world === "work" && <section className={`${styles.cases} motion-cases`} id="cases">
       <div className={styles.sectionLabel}><span>{copy.home.cases.index}</span><p>{copy.home.cases.label}<br /><small>{copy.home.cases.caption}</small></p></div>
-      <div className={styles.caseGrid}>{localized.workCases.map((item, index) => <article className={`${styles.caseCard} motion-case-card`} key={item.id}><p className={styles.cardIndex}>0{index + 1} / 02</p><p className={styles.cardPeriod}>{item.period}</p><h2>{item.title}</h2><div className={styles.cardMetric}><strong className="motion-case-metric">{item.metric}</strong><span>{item.metricLabel}</span></div><a href={`/cases/${item.id}`}>{copy.home.cases.open} <span>→</span></a></article>)}</div>
+      <div className={styles.caseGrid}>{localized.workCases.map((item, index) => <article className={`${styles.caseCard} motion-case-card`} key={item.id}><p className={styles.cardIndex}>0{index + 1} / 02</p><p className={styles.cardPeriod}>{item.period}</p><h2>{item.title}</h2><div className={styles.cardMetric}><strong className="motion-case-metric">{item.metric}</strong><span>{item.metricLabel}</span></div><a href={localizedCasePath(item.id, locale)}>{copy.home.cases.open} <span>→</span></a></article>)}</div>
     </section>}
-    {world === "work" && <AIOutlook copy={copy.aiOutlookPreview} />}
+    {world === "work" && <AIOutlook copy={copy.aiOutlookPreview} locale={locale} />}
     {world === "work" && <section className={styles.recruiterBar} aria-label="招聘方快速阅读">
       <p><span>{copy.home.recruiterBar.label}</span> {copy.home.recruiterBar.body}</p>
-      <div><a href="/about">{copy.home.recruiterBar.about} <span>↗</span></a><a href="mailto:schooldave@live.com">{copy.home.recruiterBar.email} <span>↗</span></a></div>
+      <div><a href={localizePath("/about", locale)}>{copy.home.recruiterBar.about} <span>↗</span></a><a href="mailto:schooldave@live.com">{copy.home.recruiterBar.email} <span>↗</span></a></div>
     </section>}
   </main>;
 }

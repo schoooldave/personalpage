@@ -21,3 +21,12 @@
 .arcTitle{border-right-color:rgba(23,23,20,.32)}
 .arcSteps>div:first-child{padding-left:clamp(18px,2.2vw,34px)}
 @media(max-width:720px){.arcTitle{border-right:0;border-bottom-color:rgba(23,23,20,.22)}.arcSteps>div:first-child{padding-left:8vw}}
+
+/* Capability title sits above the three cards, keeping the left rail focused on section identity. */
+.arcContent{min-width:0;padding:45px 3vw 0}.arcContent>h2{margin:0 0 34px;font-family:'Noto Serif SC',serif;font-size:clamp(28px,2.2vw,36px);line-height:1.3;font-weight:600;letter-spacing:-.04em}.arcContent .arcSteps{padding:0}.arcContent .arcIntro{display:none}
+@media(max-width:720px){.arcContent{padding:34px 8vw 0}.arcContent>h2{margin-bottom:8px}.arcContent .arcSteps{padding:0}.arcContent .arcSteps>div:first-child{padding-left:0}}
+
+.arcContent>h2{white-space:nowrap}
+.fieldNotesPreview .stickyStage{grid-template-columns:29% 1fr}
+.fieldNotesPreview .chapterRail{display:block;padding-right:3.4vw}.fieldNotesPreview .chapterRail>span{display:block}.fieldNotesPreview .chapterRail p{position:absolute;top:clamp(68px,8vh,104px);left:calc(5vw + 96px);width:92px;margin:0}
+@media(max-width:720px){.arcContent>h2{white-space:normal}.fieldNotesPreview .stickyStage{display:block}.fieldNotesPreview .chapterRail{display:grid;grid-template-columns:86px 1fr;padding-right:6vw}.fieldNotesPreview .chapterRail p{position:static;width:auto;margin:3px 0 0}}
